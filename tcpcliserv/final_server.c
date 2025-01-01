@@ -97,11 +97,12 @@ int AvailableToken(char *token)
     return 1;
 }
 
-int HandleLogin(char *id)
+int HandleLogin(char *id, int this_id)
 {
     for(int i = 0; i < MAXPLAYER; i++)
     {
         if(conns[i].state == 0) continue;
+        if(i == this_id) continue;
         if(strcmp(id, conns[i].name) == 0) return 0;
     }
     return 1;
@@ -700,13 +701,14 @@ void *RoomProcess(void *arg)
             sem_wait(&room_data_lock[room_no]);
             if(room_data[room_no].new_player == 1)  // 有新的人
             {
-                sprintf(buffer, "room %d %d has someone new!\n", room_no, tid);
+                sprintf(buffer, "room %d has someone new!\n", room_no);
                 Writen(0, buffer, strlen(buffer));
                 
-                sprintf(buffer, "get sem\n");
-                Writen(0, buffer, strlen(buffer));
+                // sprintf(buffer, "get sem\n");
+                // Writen(0, buffer, strlen(buffer));
                 for(int i = 0; i < 10; i++)
                 {
+                    if(room_data[room_no].players[i] == -1) continue;
                     if((conns[room_data[room_no].players[i]].state == 2) && used[i] == -1)  //新的人
                     {
                         sprintf(buffer, "name: %s  index: %d, used = %d\n", conns[room_data[room_no].players[i]].name, i, used[i]);
@@ -781,6 +783,7 @@ void *RoomProcess(void *arg)
                         {
                             close(conns[used[i]].connfd);
                             conns[used[i]].state = 0;
+                            
                             global_player_num--;
                         }
                         else
@@ -849,6 +852,10 @@ void *RoomProcess(void *arg)
                             room_data[room_no].used = 0;
                             room_data[room_no].in_game = 0;
                             room_data[room_no].random = 0;
+                            for(int j = 0; j < 10; j++)
+                            {
+                                room_data[room_no].players[j] = -1;
+                            }
                             sem_post(&room_data_lock[tid]);
 
                             break;
@@ -1345,7 +1352,7 @@ main()
                         // }
                        if(strcmp(login , "1") == 0)
                         {
-                            if(HandleLogin(id))
+                            if(HandleLogin(id, temp->index))
                             {
                                 sprintf(sendline, "2\n4 %s\n", id);
                                 sprintf(conns[temp->index].name, "%s", id);
