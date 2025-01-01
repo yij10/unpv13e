@@ -1,0 +1,28 @@
+
+[Thu Nov  7 21:05:08 2024] recvfrom 127.0.0.1, port 51682: 11 111550002 127.0.0.1
+New Req. Student ID = 111550002, TCP Serv addr = 127.0.0.1
+
+[Thu Nov  7 21:05:08 2024] recvfrom 127.0.0.1, port 51682: 13 111550002 9880
+Creating 8 connections...
+[Thu Nov  7 21:07:01 2024] sendto 127.0.0.1, port 51682: nak.
+
+[Thu Nov  7 21:08:25 2024] recvfrom 127.0.0.1, port 60620: 11 111550002 127.0.0.1
+New Req. Student ID = 111550002, TCP Serv addr = 127.0.0.1
+
+[Thu Nov  7 21:08:25 2024] recvfrom 127.0.0.1, port 60620: 13 111550002 9880
+Creating 1 connections...
+[Thu Nov  7 21:08:25 2024] sendto 127.0.0.1, port 60620: ok.
+
+[Thu Nov  7 21:08:55 2024] recvfrom 127.0.0.1, port 40583: 11 111550002 127.0.0.1
+New Req. Student ID = 111550002, TCP Serv addr = 127.0.0.1
+
+[Thu Nov  7 21:08:55 2024] recvfrom 127.0.0.1, port 40583: 13 111550002 9880
+Creating 10 connections...
+[Thu Nov  7 21:08:55 2024] sendto 127.0.0.1, port 40583: ok.
+
+[Thu Nov  7 23:04:02 2024] recvfrom 127.0.0.1, port 46923: 11 111550002 127.0.0.1
+New Req. Student ID = 111550002, TCP Serv addr = 127.0.0.1
+
+[Thu Nov  7 23:04:02 2024] recvfrom 127.0.0.1, port 46923: 13 111550002 9880
+Creating 3 connections...
+[Thu Nov  7 23:04:02 2024] sendto 127.0.0.1, port 46923: ok.
